@@ -17,7 +17,19 @@ namespace LinScape.Library.Gui
 		{
 			InitializeComponent();
 
-			this._lbLanguages.DataSource = Factotum.Dictionaries.Language.Languages.Select(t => t.Alpha2).ToList();
+			this._lbLanguages.Items.Clear();
+
+			foreach (var language in Factotum.Dictionaries.Language.Languages)
+			{
+				if (!String.IsNullOrEmpty(language.Alpha2))
+				{
+					this._lbLanguages.Items.Add(language.Alpha2);
+				}
+				else
+				{
+					this._lbLanguages.Items.Add(language.Alpha3);
+				}
+			}
 		}
 
 		public string SelectedLanguage
