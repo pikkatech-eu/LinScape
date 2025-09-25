@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36202.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinScape.Library", "LinScape.Library\LinScape.Library.csproj", "{6ACA3551-E35C-489E-9236-ECE753E803C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinScape", "LinScape\LinScape.csproj", "{F834811C-9111-475C-85FB-C2E5F6A90D4F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6ACA3551-E35C-489E-9236-ECE753E803C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ACA3551-E35C-489E-9236-ECE753E803C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ACA3551-E35C-489E-9236-ECE753E803C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ACA3551-E35C-489E-9236-ECE753E803C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F834811C-9111-475C-85FB-C2E5F6A90D4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F834811C-9111-475C-85FB-C2E5F6A90D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F834811C-9111-475C-85FB-C2E5F6A90D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F834811C-9111-475C-85FB-C2E5F6A90D4F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0AEF52B6-C05A-494A-93D5-AE86B2D2035B}
+	EndGlobalSection
+EndGlobal
