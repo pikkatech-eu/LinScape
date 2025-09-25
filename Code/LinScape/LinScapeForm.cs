@@ -75,6 +75,8 @@ namespace LinScape
 
 		private void OnTranslate(object sender, EventArgs e)
 		{
+			this.Cursor = Cursors.WaitCursor;
+
 			try
 			{
 				Dictionary<string, string> translations = this._translator.Translate(this._txSource.Text);
@@ -83,7 +85,7 @@ namespace LinScape
 
 				foreach (string language in translations.Keys)
 				{
-					ListViewItem lvi = new ListViewItem(new string[]{language, translations[language]});
+					ListViewItem lvi = new ListViewItem(new string[] { language, translations[language] });
 					lvi.Tag = language;
 
 					this._lvTranslations.Items.Add(lvi);
@@ -95,11 +97,21 @@ namespace LinScape
 			catch (Exception)
 			{
 			}
+
+			this.Cursor = Cursors.Default;
 		}
 
 		private void OnAddToJopurnal(object sender, EventArgs e)
 		{
 
+		}
+
+		private void OnSourceKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Return)
+			{
+				this.OnTranslate(sender, e);
+			}
 		}
 	}
 }

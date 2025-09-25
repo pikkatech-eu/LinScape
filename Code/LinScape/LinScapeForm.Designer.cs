@@ -239,6 +239,7 @@
 			this._txSource.Name = "_txSource";
 			this._txSource.Size = new Size(448, 27);
 			this._txSource.TabIndex = 7;
+			this._txSource.KeyDown += this.OnSourceKeyDown;
 			// 
 			// _lvTranslations
 			// 
