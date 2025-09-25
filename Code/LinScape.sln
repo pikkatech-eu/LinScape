@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinScape.Library", "LinScap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinScape", "LinScape\LinScape.csproj", "{F834811C-9111-475C-85FB-C2E5F6A90D4F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factotum", "..\..\Factotum\Code\CSharp\Factotum\Factotum.csproj", "{DB5AB2FE-4B1A-3538-2DD4-AD23A395B29D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F834811C-9111-475C-85FB-C2E5F6A90D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F834811C-9111-475C-85FB-C2E5F6A90D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F834811C-9111-475C-85FB-C2E5F6A90D4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB5AB2FE-4B1A-3538-2DD4-AD23A395B29D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB5AB2FE-4B1A-3538-2DD4-AD23A395B29D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB5AB2FE-4B1A-3538-2DD4-AD23A395B29D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB5AB2FE-4B1A-3538-2DD4-AD23A395B29D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

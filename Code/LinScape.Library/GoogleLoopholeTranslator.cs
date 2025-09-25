@@ -7,13 +7,7 @@
 * Copyright:    pikkatech.eu (www.pikkatech.eu)                                    *
 ***********************************************************************************/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace LinScape.Library
 {
@@ -51,6 +45,30 @@ namespace LinScape.Library
 			}
 
 			return result;
+		}
+
+		public void SaveProperties(string fileName)
+		{
+			var options = new JsonSerializerOptions {WriteIndented = true};
+			string json = JsonSerializer.Serialize<GoogleLoopholeTranslator>(this, options);
+
+			using (StreamWriter writer = new StreamWriter(fileName))
+			{
+				writer.Write(json);
+			}
+		}
+
+		public void LoadProperties(string fileName)
+		{
+			using (StreamReader reader = new StreamReader(fileName))
+			{
+				string json = reader.ReadToEnd();
+
+				var temp = JsonSerializer.Deserialize<GoogleLoopholeTranslator>(json);
+
+				this.SourceLanguage		= temp.SourceLanguage;
+				this.TargetLanguages	= temp.TargetLanguages;
+			}
 		}
 
 		private string Translate(string source, string targetLanguage)

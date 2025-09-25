@@ -29,5 +29,8 @@ namespace LinScape.Library
 		/// <param name="source">Word in the source language.</param>
 		/// <returns></returns>
 		Dictionary<string, string> Translate(string source);
+
+		void SaveProperties(string fileName);
+		void LoadProperties(string fileName);
 	}
 }
