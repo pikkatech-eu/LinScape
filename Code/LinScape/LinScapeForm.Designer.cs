@@ -49,6 +49,7 @@
 			this._btAddToJournal = new Button();
 			this._btTranslate = new Button();
 			this._tpJpurnal = new TabPage();
+			this._txResult = new TextBox();
 			this._tcLinScape.SuspendLayout();
 			this._tpTranslation.SuspendLayout();
 			this._tlpTranslation.SuspendLayout();
@@ -130,6 +131,7 @@
 			this._tlpTranslation.Controls.Add(this._lvTranslations, 1, 2);
 			this._tlpTranslation.Controls.Add(this._btAddToJournal, 0, 3);
 			this._tlpTranslation.Controls.Add(this._btTranslate, 6, 1);
+			this._tlpTranslation.Controls.Add(this._txResult, 1, 3);
 			this._tlpTranslation.Dock = DockStyle.Fill;
 			this._tlpTranslation.Location = new Point(3, 3);
 			this._tlpTranslation.Name = "_tlpTranslation";
@@ -253,6 +255,7 @@
 			this._lvTranslations.TabIndex = 9;
 			this._lvTranslations.UseCompatibleStateImageBehavior = false;
 			this._lvTranslations.View = View.Details;
+			this._lvTranslations.SelectedIndexChanged += this.OnTranslationSelected;
 			// 
 			// Language
 			// 
@@ -294,6 +297,15 @@
 			this._tpJpurnal.TabIndex = 1;
 			this._tpJpurnal.Text = "Journal";
 			this._tpJpurnal.UseVisualStyleBackColor = true;
+			// 
+			// _txResult
+			// 
+			this._tlpTranslation.SetColumnSpan(this._txResult, 7);
+			this._txResult.Dock = DockStyle.Fill;
+			this._txResult.Location = new Point(153, 599);
+			this._txResult.Name = "_txResult";
+			this._txResult.Size = new Size(1073, 27);
+			this._txResult.TabIndex = 12;
 			// 
 			// LinScapeForm
 			// 
@@ -338,5 +350,6 @@
 		private ColumnHeader Translation;
 		private Button _btAddToJournal;
 		private Button _btTranslate;
+		private TextBox _txResult;
 	}
 }

@@ -86,7 +86,7 @@ namespace LinScape
 				foreach (string language in translations.Keys)
 				{
 					ListViewItem lvi = new ListViewItem(new string[] { language, translations[language] });
-					lvi.Tag = language;
+					lvi.Tag = translations[language];
 
 					this._lvTranslations.Items.Add(lvi);
 				}
@@ -111,6 +111,14 @@ namespace LinScape
 			if (e.KeyCode == Keys.Return)
 			{
 				this.OnTranslate(sender, e);
+			}
+		}
+
+		private void OnTranslationSelected(object sender, EventArgs e)
+		{
+			if (this._lvTranslations.SelectedItems.Count == 1)
+			{
+				this._txResult.Text	= this._lvTranslations.SelectedItems[0].Tag as string;
 			}
 		}
 	}
