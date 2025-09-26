@@ -8,6 +8,8 @@ namespace LinScape
 		private ITranslator _translator = new GoogleLoopholeTranslator();
 		private static readonly string _settingsFileName = "settings.json";
 
+		private List<(string Source, string Translation)> _journal = new List<(string Source, string Translation)>();
+
 		public LinScapeForm()
 		{
 			InitializeComponent();
@@ -101,9 +103,32 @@ namespace LinScape
 			this.Cursor = Cursors.Default;
 		}
 
-		private void OnAddToJopurnal(object sender, EventArgs e)
+		private void OnAddToJournal(object sender, EventArgs e)
 		{
+			if (this._lvTranslations.SelectedItems.Count == 1)
+			{
+				var pair = (this._txSource.Text, this._txResult.Text);
 
+				this._journal.Add(pair);
+
+				this.UpdateJournal();
+			}
+		}
+
+		private void UpdateJournal()
+		{
+			this._lvJournal.Items.Clear();
+
+			foreach (var language in this._journal)
+			{
+				ListViewItem lvi = new ListViewItem(new string[] { language.Source, language.Translation });
+				lvi.Tag = language;
+
+				this._lvJournal.Items.Add(lvi);
+			}
+
+			this._lvJournal.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+			this._lvJournal.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 		}
 
 		private void OnSourceKeyDown(object sender, KeyEventArgs e)

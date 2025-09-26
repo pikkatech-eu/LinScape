@@ -48,11 +48,15 @@
 			this.Translation = new ColumnHeader();
 			this._btAddToJournal = new Button();
 			this._btTranslate = new Button();
-			this._tpJpurnal = new TabPage();
 			this._txResult = new TextBox();
+			this._tpJpurnal = new TabPage();
+			this._lvJournal = new ListView();
+			this.Source = new ColumnHeader();
+			this.ResultingTranslation = new ColumnHeader();
 			this._tcLinScape.SuspendLayout();
 			this._tpTranslation.SuspendLayout();
 			this._tlpTranslation.SuspendLayout();
+			this._tpJpurnal.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip1
@@ -274,7 +278,7 @@
 			this._btAddToJournal.TabIndex = 10;
 			this._btAddToJournal.Text = "Add to &Journal";
 			this._btAddToJournal.UseVisualStyleBackColor = true;
-			this._btAddToJournal.Click += this.OnAddToJopurnal;
+			this._btAddToJournal.Click += this.OnAddToJournal;
 			// 
 			// _btTranslate
 			// 
@@ -288,16 +292,6 @@
 			this._btTranslate.UseVisualStyleBackColor = true;
 			this._btTranslate.Click += this.OnTranslate;
 			// 
-			// _tpJpurnal
-			// 
-			this._tpJpurnal.Location = new Point(4, 29);
-			this._tpJpurnal.Name = "_tpJpurnal";
-			this._tpJpurnal.Padding = new Padding(3);
-			this._tpJpurnal.Size = new Size(1235, 642);
-			this._tpJpurnal.TabIndex = 1;
-			this._tpJpurnal.Text = "Journal";
-			this._tpJpurnal.UseVisualStyleBackColor = true;
-			// 
 			// _txResult
 			// 
 			this._tlpTranslation.SetColumnSpan(this._txResult, 7);
@@ -306,6 +300,37 @@
 			this._txResult.Name = "_txResult";
 			this._txResult.Size = new Size(1073, 27);
 			this._txResult.TabIndex = 12;
+			// 
+			// _tpJpurnal
+			// 
+			this._tpJpurnal.Controls.Add(this._lvJournal);
+			this._tpJpurnal.Location = new Point(4, 29);
+			this._tpJpurnal.Name = "_tpJpurnal";
+			this._tpJpurnal.Padding = new Padding(3);
+			this._tpJpurnal.Size = new Size(1235, 642);
+			this._tpJpurnal.TabIndex = 1;
+			this._tpJpurnal.Text = "Journal";
+			this._tpJpurnal.UseVisualStyleBackColor = true;
+			// 
+			// _lvJournal
+			// 
+			this._lvJournal.Columns.AddRange(new ColumnHeader[] { this.Source, this.ResultingTranslation });
+			this._lvJournal.Dock = DockStyle.Fill;
+			this._lvJournal.FullRowSelect = true;
+			this._lvJournal.Location = new Point(3, 3);
+			this._lvJournal.Name = "_lvJournal";
+			this._lvJournal.Size = new Size(1229, 636);
+			this._lvJournal.TabIndex = 0;
+			this._lvJournal.UseCompatibleStateImageBehavior = false;
+			this._lvJournal.View = View.Details;
+			// 
+			// Source
+			// 
+			this.Source.Text = "Source";
+			// 
+			// ResultingTranslation
+			// 
+			this.ResultingTranslation.Text = "Translation";
 			// 
 			// LinScapeForm
 			// 
@@ -324,6 +349,7 @@
 			this._tpTranslation.ResumeLayout(false);
 			this._tlpTranslation.ResumeLayout(false);
 			this._tlpTranslation.PerformLayout();
+			this._tpJpurnal.ResumeLayout(false);
 			this.ResumeLayout(false);
 		}
 
@@ -351,5 +377,8 @@
 		private Button _btAddToJournal;
 		private Button _btTranslate;
 		private TextBox _txResult;
+		private ListView _lvJournal;
+		private ColumnHeader Source;
+		private ColumnHeader ResultingTranslation;
 	}
 }
