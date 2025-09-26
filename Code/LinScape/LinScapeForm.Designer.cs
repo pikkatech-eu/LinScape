@@ -29,6 +29,15 @@
 		private void InitializeComponent()
 		{
 			this.menuStrip1 = new MenuStrip();
+			this.journalToolStripMenuItem = new ToolStripMenuItem();
+			this.newToolStripMenuItem = new ToolStripMenuItem();
+			this.loadToolStripMenuItem = new ToolStripMenuItem();
+			this.saveToolStripMenuItem = new ToolStripMenuItem();
+			this.saveasToolStripMenuItem = new ToolStripMenuItem();
+			this.exportToolStripMenuItem = new ToolStripMenuItem();
+			this.teXToolStripMenuItem = new ToolStripMenuItem();
+			this.toolStripSeparator1 = new ToolStripSeparator();
+			this.quitToolStripMenuItem = new ToolStripMenuItem();
 			this.toolStrip1 = new ToolStrip();
 			this.statusStrip1 = new StatusStrip();
 			this._tcLinScape = new TabControl();
@@ -53,6 +62,7 @@
 			this._lvJournal = new ListView();
 			this.Source = new ColumnHeader();
 			this.ResultingTranslation = new ColumnHeader();
+			this.menuStrip1.SuspendLayout();
 			this._tcLinScape.SuspendLayout();
 			this._tpTranslation.SuspendLayout();
 			this._tlpTranslation.SuspendLayout();
@@ -64,11 +74,73 @@
 			this.menuStrip1.AutoSize = false;
 			this.menuStrip1.Font = new Font("Consolas", 10F);
 			this.menuStrip1.ImageScalingSize = new Size(20, 20);
+			this.menuStrip1.Items.AddRange(new ToolStripItem[] { this.journalToolStripMenuItem });
 			this.menuStrip1.Location = new Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new Size(1243, 40);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
+			// 
+			// journalToolStripMenuItem
+			// 
+			this.journalToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { this.newToolStripMenuItem, this.loadToolStripMenuItem, this.saveToolStripMenuItem, this.saveasToolStripMenuItem, this.exportToolStripMenuItem, this.toolStripSeparator1, this.quitToolStripMenuItem });
+			this.journalToolStripMenuItem.Name = "journalToolStripMenuItem";
+			this.journalToolStripMenuItem.Size = new Size(86, 36);
+			this.journalToolStripMenuItem.Text = "&Journal";
+			// 
+			// newToolStripMenuItem
+			// 
+			this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+			this.newToolStripMenuItem.Size = new Size(224, 26);
+			this.newToolStripMenuItem.Text = "&New";
+			this.newToolStripMenuItem.Click += this.OnJournalNew;
+			// 
+			// loadToolStripMenuItem
+			// 
+			this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+			this.loadToolStripMenuItem.Size = new Size(224, 26);
+			this.loadToolStripMenuItem.Text = "&Load";
+			this.loadToolStripMenuItem.Click += this.OnJournalLoad;
+			// 
+			// saveToolStripMenuItem
+			// 
+			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+			this.saveToolStripMenuItem.Size = new Size(224, 26);
+			this.saveToolStripMenuItem.Text = "&Save";
+			this.saveToolStripMenuItem.Click += this.OnJournalSave;
+			// 
+			// saveasToolStripMenuItem
+			// 
+			this.saveasToolStripMenuItem.Name = "saveasToolStripMenuItem";
+			this.saveasToolStripMenuItem.Size = new Size(224, 26);
+			this.saveasToolStripMenuItem.Text = "Save &as";
+			this.saveasToolStripMenuItem.Click += this.OnJournalSaveAs;
+			// 
+			// exportToolStripMenuItem
+			// 
+			this.exportToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { this.teXToolStripMenuItem });
+			this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+			this.exportToolStripMenuItem.Size = new Size(224, 26);
+			this.exportToolStripMenuItem.Text = "&Export";
+			// 
+			// teXToolStripMenuItem
+			// 
+			this.teXToolStripMenuItem.Name = "teXToolStripMenuItem";
+			this.teXToolStripMenuItem.Size = new Size(224, 26);
+			this.teXToolStripMenuItem.Text = "&TeX";
+			this.teXToolStripMenuItem.Click += this.OnJournalExportAsTeXTable;
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new Size(221, 6);
+			// 
+			// quitToolStripMenuItem
+			// 
+			this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
+			this.quitToolStripMenuItem.Size = new Size(224, 26);
+			this.quitToolStripMenuItem.Text = "&Quit";
+			this.quitToolStripMenuItem.Click += this.OnJournalQuit;
 			// 
 			// toolStrip1
 			// 
@@ -345,6 +417,8 @@
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "LinScapeForm";
 			this.Text = "LinScape 1.0";
+			this.menuStrip1.ResumeLayout(false);
+			this.menuStrip1.PerformLayout();
 			this._tcLinScape.ResumeLayout(false);
 			this._tpTranslation.ResumeLayout(false);
 			this._tlpTranslation.ResumeLayout(false);
@@ -380,5 +454,14 @@
 		private ListView _lvJournal;
 		private ColumnHeader Source;
 		private ColumnHeader ResultingTranslation;
+		private ToolStripMenuItem journalToolStripMenuItem;
+		private ToolStripMenuItem newToolStripMenuItem;
+		private ToolStripMenuItem loadToolStripMenuItem;
+		private ToolStripMenuItem saveToolStripMenuItem;
+		private ToolStripMenuItem saveasToolStripMenuItem;
+		private ToolStripMenuItem exportToolStripMenuItem;
+		private ToolStripMenuItem teXToolStripMenuItem;
+		private ToolStripSeparator toolStripSeparator1;
+		private ToolStripMenuItem quitToolStripMenuItem;
 	}
 }

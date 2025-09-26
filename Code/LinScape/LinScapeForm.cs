@@ -1,3 +1,4 @@
+using System.Xml.Linq;
 using LinScape.Library;
 using LinScape.Library.Gui;
 
@@ -9,6 +10,7 @@ namespace LinScape
 		private static readonly string _settingsFileName = "settings.json";
 
 		private List<(string Source, string Translation)> _journal = new List<(string Source, string Translation)>();
+		private string _journalFileName = "";
 
 		public LinScapeForm()
 		{
@@ -143,7 +145,126 @@ namespace LinScape
 		{
 			if (this._lvTranslations.SelectedItems.Count == 1)
 			{
-				this._txResult.Text	= this._lvTranslations.SelectedItems[0].Tag as string;
+				this._txResult.Text = this._lvTranslations.SelectedItems[0].Tag as string;
+			}
+		}
+
+		private void OnJournalNew(object sender, EventArgs e)
+		{
+			this._journal.Clear();
+			this.UpdateJournal();
+		}
+
+		private void OnJournalLoad(object sender, EventArgs e)
+		{
+			OpenFileDialog dialog = new OpenFileDialog();
+			dialog.Filter		= "XML files (*xml)|*.xml";
+
+			if (dialog.ShowDialog() == DialogResult.OK)
+			{
+				this._journalFileName = dialog.FileName;
+				this.LoadJournal(this._journalFileName);
+
+				this.UpdateJournal();
+			}
+		}
+
+		private void OnJournalSave(object sender, EventArgs e)
+		{
+			if (!String.IsNullOrEmpty(this._journalFileName))
+			{
+				this.SaveJournal(this._journalFileName);
+			}
+			else
+			{
+				this.OnJournalSaveAs(sender, e);
+			}
+		}
+
+		private void OnJournalSaveAs(object sender, EventArgs e)
+		{
+			SaveFileDialog dialog = new SaveFileDialog();
+			dialog.Filter		= "XML files (*xml)|*.xml";
+
+			if (dialog.ShowDialog() == DialogResult.OK)
+			{
+				this._journalFileName = dialog.FileName;
+				this.SaveJournal(this._journalFileName);
+			}
+		}
+
+		/*
+		\begin{tabularx}{0.4\textwidth}{|l|X|}
+			\hline
+			Source & Translation	\\
+			\hline
+			source1 & translation1 	\\
+			...
+			sourceN & translationN 	\\
+			\hline
+			\end{tabularx}
+		 */
+
+		private void OnJournalExportAsTeXTable(object sender, EventArgs e)
+		{
+			float width = 1.0f;
+
+			string result = $"begin{{tabularx}}{{{width}\\textwidth}}{{|l|X|}}\n";
+			result += "\\hline\n";
+			result += "Source & Translation\t\\\\\n";
+			result += "\\hline\n";
+
+			foreach (var item in this._journal)
+			{
+				result += $"{item.Source} & {item.Translation}\t\\\\\n";
+			}
+
+			result += "\\hline\n";
+
+			result += "\\end{tabularx}";
+
+			SaveFileDialog dialog = new SaveFileDialog();
+			dialog.Filter		= "TeX files (*.tex)|*.tex";
+
+			if (dialog.ShowDialog() == DialogResult.OK)
+			{
+				using (StreamWriter writer = new StreamWriter(dialog.FileName))
+				{
+					writer.Write(result);
+				}
+			}
+		}
+
+		private void OnJournalQuit(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+
+		private void SaveJournal(string fileName)
+		{
+			XElement x = new XElement("Journal");
+
+			foreach (var item in this._journal)
+			{
+				XElement xItem = new XElement("Item", new XAttribute("Source", item.Source), new XAttribute("Translation", item.Translation));
+				x.Add(xItem);
+			}
+
+			x.Save(fileName);
+		}
+
+		private void LoadJournal(string fileName)
+		{
+			this._journal.Clear();
+
+			XElement x = XElement.Load(fileName);
+
+			foreach (XElement xItem in x.Elements("Item"))
+			{
+				string source = xItem.Attribute("Source").Value;
+				string translation = xItem.Attribute("Translation").Value;
+
+				this._journal.Add((source, translation));
 			}
 		}
 	}
