@@ -41,7 +41,11 @@ namespace LinScape.Library
 			foreach (string targetLanguage in this.TargetLanguages)
 			{
 				string translation = this.Translate(source, targetLanguage);
-				result.Add(targetLanguage, translation);
+
+				if (translation != null)
+				{
+					result.Add(targetLanguage, translation);
+				}
 			}
 
 			return result;
@@ -80,6 +84,11 @@ namespace LinScape.Library
 			using (HttpClient client = new HttpClient())
 			{
 				HttpResponseMessage response = client.Send(request);
+
+				if (!response.IsSuccessStatusCode)
+				{
+					return null;
+				}
 
 				using (StreamReader reader = new StreamReader(response.Content.ReadAsStream()))
 				{
