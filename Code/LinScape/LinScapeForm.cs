@@ -11,6 +11,7 @@ namespace LinScape
 
 		private List<(string Source, string Translation)> _journal = new List<(string Source, string Translation)>();
 		private string _journalFileName = "";
+		private bool _isJournalDirty = false;
 
 		public LinScapeForm()
 		{
@@ -114,6 +115,10 @@ namespace LinScape
 				this._journal.Add(pair);
 
 				this.UpdateJournal();
+
+				this._isJournalDirty = true;
+
+				this.UpdateStatusStrip();
 			}
 		}
 
@@ -153,6 +158,10 @@ namespace LinScape
 		{
 			this._journal.Clear();
 			this.UpdateJournal();
+			this._journalFileName = "";
+			this._isJournalDirty = false;
+
+			this.UpdateStatusStrip();
 		}
 
 		private void OnJournalLoad(object sender, EventArgs e)
@@ -166,6 +175,10 @@ namespace LinScape
 				this.LoadJournal(this._journalFileName);
 
 				this.UpdateJournal();
+
+				this._isJournalDirty = false;
+
+				this.UpdateStatusStrip();
 			}
 		}
 
@@ -174,6 +187,10 @@ namespace LinScape
 			if (!String.IsNullOrEmpty(this._journalFileName))
 			{
 				this.SaveJournal(this._journalFileName);
+
+				this._isJournalDirty = false;
+
+				this.UpdateStatusStrip();
 			}
 			else
 			{
@@ -190,6 +207,10 @@ namespace LinScape
 			{
 				this._journalFileName = dialog.FileName;
 				this.SaveJournal(this._journalFileName);
+
+				this._isJournalDirty = false;
+
+				this.UpdateStatusStrip();
 			}
 		}
 
@@ -237,7 +258,17 @@ namespace LinScape
 
 		private void OnJournalQuit(object sender, EventArgs e)
 		{
-			this.Close();
+			if (this._isJournalDirty)
+			{
+				if (MessageBox.Show("Jornal has been changed", "Unsaved changes in journal", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+				{
+					this.Close();
+				}
+				else
+				{
+					this.OnJournalSave(sender, e);
+				}
+			}
 		}
 
 		private void SaveJournal(string fileName)
@@ -266,6 +297,12 @@ namespace LinScape
 
 				this._journal.Add((source, translation));
 			}
+		}
+
+		private void UpdateStatusStrip()
+		{
+			string dirtiness = this._isJournalDirty ? "*" : "";
+			this._lblStatus.Text = $"{dirtiness} {this._journalFileName}";
 		}
 	}
 }

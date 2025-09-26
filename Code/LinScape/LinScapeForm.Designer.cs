@@ -62,7 +62,9 @@
 			this._lvJournal = new ListView();
 			this.Source = new ColumnHeader();
 			this.ResultingTranslation = new ColumnHeader();
+			this._lblStatus = new ToolStripStatusLabel();
 			this.menuStrip1.SuspendLayout();
+			this.statusStrip1.SuspendLayout();
 			this._tcLinScape.SuspendLayout();
 			this._tpTranslation.SuspendLayout();
 			this._tlpTranslation.SuspendLayout();
@@ -126,7 +128,7 @@
 			// teXToolStripMenuItem
 			// 
 			this.teXToolStripMenuItem.Name = "teXToolStripMenuItem";
-			this.teXToolStripMenuItem.Size = new Size(224, 26);
+			this.teXToolStripMenuItem.Size = new Size(119, 26);
 			this.teXToolStripMenuItem.Text = "&TeX";
 			this.teXToolStripMenuItem.Click += this.OnJournalExportAsTeXTable;
 			// 
@@ -156,6 +158,7 @@
 			// 
 			this.statusStrip1.AutoSize = false;
 			this.statusStrip1.ImageScalingSize = new Size(20, 20);
+			this.statusStrip1.Items.AddRange(new ToolStripItem[] { this._lblStatus });
 			this.statusStrip1.Location = new Point(0, 757);
 			this.statusStrip1.Name = "statusStrip1";
 			this.statusStrip1.Size = new Size(1243, 36);
@@ -404,6 +407,13 @@
 			// 
 			this.ResultingTranslation.Text = "Translation";
 			// 
+			// _lblStatus
+			// 
+			this._lblStatus.Font = new Font("Consolas", 10F);
+			this._lblStatus.Name = "_lblStatus";
+			this._lblStatus.Size = new Size(81, 30);
+			this._lblStatus.Text = "ready...";
+			// 
 			// LinScapeForm
 			// 
 			this.AutoScaleDimensions = new SizeF(9F, 20F);
@@ -419,6 +429,8 @@
 			this.Text = "LinScape 1.0";
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
+			this.statusStrip1.ResumeLayout(false);
+			this.statusStrip1.PerformLayout();
 			this._tcLinScape.ResumeLayout(false);
 			this._tpTranslation.ResumeLayout(false);
 			this._tlpTranslation.ResumeLayout(false);
@@ -463,5 +475,6 @@
 		private ToolStripMenuItem teXToolStripMenuItem;
 		private ToolStripSeparator toolStripSeparator1;
 		private ToolStripMenuItem quitToolStripMenuItem;
+		private ToolStripStatusLabel _lblStatus;
 	}
 }
