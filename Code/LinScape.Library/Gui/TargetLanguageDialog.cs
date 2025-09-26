@@ -8,6 +8,7 @@
 ***********************************************************************************/
 
 using System.Data;
+using Factotum.Dictionaries;
 
 namespace LinScape.Library.Gui
 {
@@ -17,30 +18,31 @@ namespace LinScape.Library.Gui
 		{
 			InitializeComponent();
 
-			this._lbLanguages.Items.Clear();
+			this._lvLanguages.Items.Clear();
 
 			foreach (var language in Factotum.Dictionaries.Language.Languages)
 			{
-				if (!String.IsNullOrEmpty(language.Alpha2))
-				{
-					this._lbLanguages.Items.Add(language.Alpha2);
-				}
-				else
-				{
-					this._lbLanguages.Items.Add(language.Alpha3);
-				}
+				ListViewItem lvi = new ListViewItem(new string[]{language.Name, language.Alpha2, language.Alpha3});
+				lvi.Tag				= language;
+
+				this._lvLanguages.Items.Add(lvi);
 			}
+
+			this._lvLanguages.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+			this._lvLanguages.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 		}
 
-		public string SelectedLanguage
+		public string SelectedLanguageCode
 		{
 			get
 			{
-				try
+				if (this._lvLanguages.SelectedItems.Count == 1)
 				{
-					return this._lbLanguages.SelectedItem.ToString();
+					Language language = this._lvLanguages.SelectedItems[0].Tag as Language;
+
+					return !String.IsNullOrEmpty(language.Alpha2) ? language.Alpha2 : language.Alpha3;
 				}
-				catch (Exception)
+				else
 				{
 					return null;
 				}

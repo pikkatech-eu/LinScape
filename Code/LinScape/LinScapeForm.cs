@@ -45,7 +45,7 @@ namespace LinScape
 
 			if (dialog.ShowDialog() == DialogResult.OK)
 			{
-				string language = dialog.SelectedLanguage;
+				string language = dialog.SelectedLanguageCode;
 
 				if (!this._translator.TargetLanguages.Contains(language))
 				{
